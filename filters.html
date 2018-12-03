@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+    <script>
+      // Prevent forms from submitting.
+      function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+      window.addEventListener('load', preventFormSubmit);
+      function handleFormSubmit(formObject) {
+        google.script.run.withSuccessHandler(updateUrl).requestFilterList(formObject);
+      }
+      function updateUrl() {
+        google.script.host.close()
+      }
+    </script>
+  </head>
+  <body>
+    <form id="myForm" onsubmit="handleFormSubmit(this)">
+      Enter your Account ID(s) (to enter more account separate with comma): <br />
+      <input name="gaAccount" type="text" />
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+ </body>
+</html>
