@@ -9,7 +9,7 @@
 * Obtains input from user necessary for listing metrics.
 */
 
-function requestDimensionData() {
+function requestMetricData() {
   var html = HtmlService.createHtmlOutputFromFile('metric');
   SpreadsheetApp.getUi().showModalDialog(html, 'Metric Get Data');
 }
@@ -22,7 +22,7 @@ function requestMetricList(formObject) {
   // Process the user's response.
   if (accountId && propertyId) {
     // Construct the array of one or more properties from the user's input.
-    var propertyList = response.getResponseText();
+    var propertyList = propertyId;
     var propertyListArray = propertyList.split(/\s*,\s*/);
 
     // List metrics from all properties entered by the user.
